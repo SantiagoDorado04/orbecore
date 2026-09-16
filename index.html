@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbecore – Donde tu empresa evoluciona al mundo digital</title>
-  <meta name="description" content="En Orbecore ayudamos a las empresas a dar el salto al mundo digital mediante software a medida, marketing estratégico y automatización de procesos." />
-  <meta name="keywords" content="transformación digital, software empresarial, marketing digital, automatización, ecosistema digital, Orbecore" />
-  <meta property="og:title" content="Orbecore – Donde tu empresa evoluciona al mundo digital" />
-  <meta property="og:description" content="Digitalizamos tu empresa de principio a fin en un solo ecosistema." />
+  <title>Orbecore – Software a medida, sitios web y ecosistemas digitales que venden</title>
+  <meta name="description" content="En Orbecore creamos software a medida, sitios web que venden y ecosistemas digitales completos. Transformamos tu empresa con tecnología real y resultados medibles." />
+  <meta name="keywords" content="software a medida, sitios web, desarrollo web, aplicaciones móviles, transformación digital, marketing digital, automatización, ecosistema digital, Orbecore, Colombia" />
+  <meta property="og:title" content="Orbecore – Software, sitios web y ecosistemas digitales que impulsan tu negocio" />
+  <meta property="og:description" content="Creamos software, sitios web y soluciones digitales que generan ventas y automatizan tu operación." />
   <meta property="og:type" content="website" />
 
   <!-- Tailwind CSS -->
@@ -35,8 +35,8 @@
               800: '#0f1629',
               700: '#141c35',
               600: '#1a2342',
-              surface: '#12182b', // MD3 Surface color
-              surfaceVariant: '#1a2238', // MD3 Surface Variant
+              surface: '#12182b',
+              surfaceVariant: '#1a2238',
             }
           },
           fontFamily: {
@@ -53,9 +53,9 @@
             'glow-lg': '0 0 40px rgba(46, 120, 255, 0.6)',
           },
           borderRadius: {
-            'md3': '16px', // Standard MD3 corner radius
-            'md3-lg': '24px', // Large MD3 corner radius
-            'md3-xl': '32px', // Extra large MD3 corner radius
+            'md3': '16px',
+            'md3-lg': '24px',
+            'md3-xl': '32px',
           },
           transitionTimingFunction: {
             'md3-standard': 'cubic-bezier(0.2, 0.0, 0, 1.0)',
@@ -106,7 +106,105 @@
     ::-webkit-scrollbar-thumb { background: #2e78ff; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #569dff; }
 
-    /* Animations */
+    /* ==================== SPLASH SCREEN ==================== */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #050810;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #splash-screen.fade-out {
+      animation: splashFadeOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes splashFadeOut {
+      to { opacity: 0; pointer-events: none; }
+    }
+
+    .splash-orb-container {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .splash-orb {
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      opacity: 0;
+      animation: orbBirth 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      position: relative;
+      z-index: 3;
+    }
+
+    .splash-orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 40px rgba(46, 120, 255, 0.6));
+    }
+
+    @keyframes orbBirth {
+      0% { width: 0; height: 0; opacity: 0; }
+      40% { opacity: 1; }
+      100% { width: 120px; height: 120px; opacity: 1; }
+    }
+
+    /* Single ring pulse */
+    .splash-ring {
+      position: absolute;
+      inset: -20%;
+      border-radius: 50%;
+      border: 1.5px solid rgba(46, 120, 255, 0.5);
+      opacity: 0;
+      z-index: 1;
+    }
+    .splash-ring:nth-child(1) { animation: ringExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; }
+    .splash-ring:nth-child(2) { animation: ringExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; }
+
+    @keyframes ringExpand {
+      0% { transform: scale(0); opacity: 0.7; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+
+    .splash-glow {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46, 120, 255, 0.3) 0%, transparent 70%);
+      opacity: 0;
+      z-index: 0;
+      animation: glowPulse 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+
+    @keyframes glowPulse {
+      0% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; transform: scale(1.8); }
+    }
+
+    .splash-text {
+      margin-top: 24px;
+      opacity: 0;
+      animation: splashTextIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+    }
+
+    @keyframes splashTextIn {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==================== MAIN ANIMATIONS ==================== */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -202,18 +300,18 @@
 
     /* Glass morphism - MD3 Surface */
     .glass {
-      background: rgba(18, 24, 43, 0.7); /* dark-surface */
+      background: rgba(18, 24, 43, 0.7);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15); /* md3-3 */
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
     }
     .glass-light {
-      background: rgba(26, 34, 56, 0.6); /* dark-surfaceVariant */
+      background: rgba(26, 34, 56, 0.6);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15); /* md3-1 */
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
     }
 
     /* Service card hover - MD3 Elevation */
@@ -222,7 +320,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* MD3 State Layer */
     .service-card::after {
       content: '';
       position: absolute;
@@ -234,19 +331,19 @@
       color: #2e78ff;
     }
     .service-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: rgba(46, 120, 255, 0.3);
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15); /* md3-5 */
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
     }
     .service-card:hover::after {
-      opacity: 0.04; /* Hover state layer opacity */
+      opacity: 0.04;
     }
     .service-card:active::after {
-      opacity: 0.1; /* Pressed state layer opacity */
+      opacity: 0.1;
     }
     .service-card:hover .service-icon {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(46, 120, 255, 0.4);
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(46, 120, 255, 0.5);
     }
 
     /* Value card */
@@ -265,8 +362,8 @@
       pointer-events: none;
     }
     .value-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15); /* md3-3 */
+      transform: translateY(-4px);
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
     }
     .value-card:hover::after {
       opacity: 0.04;
@@ -414,37 +511,196 @@
     .counter {
       display: inline-block;
     }
+
+    /* Inline CTA banner */
+    .cta-inline {
+      background: linear-gradient(135deg, rgba(46, 120, 255, 0.15) 0%, rgba(23, 85, 245, 0.08) 100%);
+      border: 1px solid rgba(46, 120, 255, 0.2);
+      transition: all 300ms cubic-bezier(0.2, 0.0, 0, 1.0);
+    }
+    .cta-inline:hover {
+      border-color: rgba(46, 120, 255, 0.5);
+      box-shadow: 0 0 30px rgba(46, 120, 255, 0.15);
+    }
+
+    /* Case study card shimmer */
+    .case-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .case-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(46, 120, 255, 0.03), transparent);
+      transition: left 0.6s ease;
+    }
+    .case-card:hover::before {
+      left: 100%;
+    }
+
+    /* Team member social icon */
+    .team-social {
+      transition: all 200ms ease;
+    }
+    .team-social:hover {
+      transform: translateY(-2px);
+      color: #569dff;
+    }
+
+    /* Floating WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      animation: whatsappPulse 2s ease-in-out infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+    .whatsapp-label {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      z-index: 999;
+      background: #1a2238;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: labelAppear 0.5s ease 3s forwards;
+      white-space: nowrap;
+    }
+    .whatsapp-label::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 20px;
+      width: 12px;
+      height: 12px;
+      background: #1a2238;
+      transform: rotate(45deg);
+    }
+    @keyframes whatsappPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7), 0 0 0 8px rgba(37, 211, 102, 0.1); }
+    }
+    @keyframes labelAppear {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Process step card */
+    .process-step {
+      position: relative;
+      transition: all 300ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .process-step:hover {
+      transform: translateY(-4px);
+    }
+    .process-step .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      transition: all 300ms ease;
+    }
+    .process-step:hover .step-number {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(46, 120, 255, 0.4);
+    }
+
+    /* Urgency banner */
+    .urgency-banner {
+      background: linear-gradient(90deg, rgba(46, 120, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(46, 120, 255, 0.1) 100%);
+      border: 1px solid rgba(46, 120, 255, 0.15);
+      animation: urgencyPulse 3s ease-in-out infinite;
+    }
+    @keyframes urgencyPulse {
+      0%, 100% { border-color: rgba(46, 120, 255, 0.15); }
+      50% { border-color: rgba(46, 120, 255, 0.4); }
+    }
+
+    /* Pain point highlight */
+    .pain-highlight {
+      text-decoration: line-through;
+      color: #ef4444;
+      opacity: 0.7;
+    }
   </style>
 </head>
 
 <body class="bg-dark-900 text-white font-sans antialiased overflow-x-hidden">
 
+  <!-- ==================== SPLASH SCREEN ==================== -->
+  <div id="splash-screen">
+    <div class="splash-orb-container">
+      <div class="splash-glow"></div>
+      <div class="splash-ring"></div>
+      <div class="splash-ring"></div>
+      <div class="splash-orb">
+        <img src="orbecore_logo_azul_blanco_1.png" alt="Orbecore" />
+      </div>
+    </div>
+    <div class="splash-text">
+      <span class="font-display text-xl md:text-2xl font-bold tracking-tight">
+        <span class="text-white">Orbe</span><span class="gradient-text">core</span>
+      </span>
+    </div>
+  </div>
+
   <!-- ==================== NAVIGATION ==================== -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
-        <a href="#inicio" class="flex items-center gap-3 group">
-          <img src="orbecore_logo_azul_blanco_1.png" alt="Orbecore" class="h-16 w-auto group-hover:scale-110 transition-transform" style="filter: drop-shadow(0 4px 12px rgba(46, 120, 255, 0.3));">
+        <!-- Logo - responsive sizing -->
+        <a href="#inicio" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="orbecore_logo_azul_blanco_1.png" alt="Orbecore" class="h-10 sm:h-12 md:h-16 w-auto group-hover:scale-110 transition-transform" style="filter: drop-shadow(0 4px 12px rgba(46, 120, 255, 0.3));">
         </a>
 
         <!-- Desktop menu -->
-        <div class="hidden md:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-6 xl:gap-8">
           <a href="#inicio" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Inicio</a>
           <a href="#nosotros" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Nosotros</a>
           <a href="#servicios" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Servicios</a>
           <a href="#valores" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Valores</a>
           <a href="#ecosistema" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Ecosistema</a>
-          <a href="#orboxy" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Orboxy</a>
           <a href="#equipo" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Equipo</a>
-          <a href="#casos-exito" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Casos de éxito</a>
-          <a href="#contacto" class="px-6 py-2.5 bg-orv-600 hover:bg-orv-500 text-white text-sm font-semibold rounded-full transition-all duration-md3-medium hover:shadow-md3-3 active:shadow-md3-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900">
-            Contáctanos
+          <a href="#casos-exito" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm">Portafolio</a>
+          <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-full transition-all duration-md3-medium hover:shadow-lg shadow-emerald-500/20 active:shadow-md3-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotiza gratis
           </a>
         </div>
 
         <!-- Mobile menu button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Menú">
+        <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Menú">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
@@ -453,13 +709,15 @@
     </div>
 
     <!-- Mobile menu overlay -->
-    <div id="mobile-overlay" class="mobile-overlay fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="mobile-overlay" class="mobile-overlay fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 w-72 bg-dark-900/98 border-l-2 border-orv-500/30 z-50 md:hidden shadow-2xl">
+    <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 w-72 bg-dark-900/98 border-l-2 border-orv-500/30 z-50 lg:hidden shadow-2xl">
       <!-- Close button -->
       <div class="flex items-center justify-between p-6 border-b border-orv-500/20">
-        <span class="font-display font-bold text-lg text-white">Menú</span>
+        <a href="#inicio" class="flex items-center gap-2">
+          <img src="orbecore_logo_azul_blanco_1.png" alt="Orbecore" class="h-8 w-auto" style="filter: drop-shadow(0 2px 8px rgba(46, 120, 255, 0.3));">
+        </a>
         <button id="mobile-menu-close" class="p-2 text-gray-400 hover:text-white transition-colors">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -473,67 +731,82 @@
         <a href="#servicios" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Servicios</a>
         <a href="#valores" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Valores</a>
         <a href="#ecosistema" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Ecosistema</a>
-        <a href="#casos-exito" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Casos de éxito</a>
-        <a href="#orboxy" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Orboxy</a>
+        <a href="#equipo" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Equipo</a>
+        <a href="#casos-exito" class="text-lg font-medium text-gray-300 hover:text-orv-400 transition-colors mobile-link py-2">Portafolio</a>
         <hr class="border-orv-500/20 my-2">
-        <a href="#contacto" class="mt-2 px-6 py-3 bg-gradient-to-r from-orv-600 to-orv-500 hover:from-orv-500 hover:to-orv-400 text-white text-center font-semibold rounded-full transition-all shadow-lg shadow-orv-500/30 mobile-link">
-          Contáctanos
+        <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="mt-2 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-center font-semibold rounded-full transition-all shadow-lg shadow-emerald-500/30 mobile-link">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos por WhatsApp
         </a>
       </div>
     </div>
   </nav>
 
   <!-- ==================== HERO SECTION ==================== -->
-  <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden">
     <!-- Shader Background -->
     <div id="shader-container"></div>
 
     <!-- Dark overlay for readability -->
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/40 via-dark-900/30 to-dark-900 z-[1]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/50 to-dark-900 z-[1]"></div>
 
     <!-- Hero Content -->
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="animate-fade-in" style="animation-delay: 0.2s; opacity: 0;">
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-orv-300 text-sm font-medium mb-8">
-          <span class="w-2 h-2 rounded-full bg-orv-400 animate-pulse"></span>
-          Transformación digital real para empresas reales
-        </span>
-      </div>
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 sm:pt-32 md:pt-36 pb-24 sm:pb-28">
+      <div class="max-w-3xl">
 
-      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-8 animate-fade-in" style="animation-delay: 0.4s; opacity: 0;">
-        <span class="text-white">Donde tu empresa</span><br>
-        <span class="gradient-text">evoluciona al</span><br>
-        <span class="text-white">mundo digital</span>
-      </h1>
+        <!-- Eyebrow -->
+        <p class="text-orv-400 text-sm sm:text-base font-medium tracking-wide mb-4 sm:mb-5 animate-fade-in" style="animation-delay: 0.2s; opacity: 0;">
+          Software a medida &middot; Sitios web &middot; Ecosistemas digitales
+        </p>
 
-      <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style="animation-delay: 0.6s; opacity: 0;">
-        Creamos ecosistemas tecnológicos donde el software, tu presencia digital y tus clientes trabajan en armonía para impulsar tu crecimiento.
-      </p>
+        <!-- Headline -->
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-5 sm:mb-6 animate-fade-in" style="animation-delay: 0.35s; opacity: 0;">
+          <span class="text-white">Creamos la tecnolog&iacute;a que</span><br>
+          <span class="gradient-text">tu negocio necesita para vender</span>
+        </h1>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style="animation-delay: 0.8s; opacity: 0;">
-        <a href="#servicios" class="group flex items-center gap-2 px-8 py-4 bg-orv-600 hover:bg-orv-500 text-white font-semibold rounded-full transition-all duration-md3-medium hover:shadow-md3-3 active:shadow-md3-1 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900">
-          Conoce nuestros servicios
-          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-md3-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <a href="#nosotros" class="flex items-center gap-2 px-8 py-4 glass text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-md3-medium hover:shadow-md3-2 active:shadow-md3-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-orv-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Descubre más
-        </a>
+        <!-- Subtitle -->
+        <p class="text-gray-400 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10 animate-fade-in" style="animation-delay: 0.5s; opacity: 0;">
+          Automatizamos tu operaci&oacute;n, dise&ntilde;amos sitios web que convierten visitantes en clientes y construimos software que escala contigo. Cotizaci&oacute;n sin costo.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-10 sm:mb-14 animate-fade-in" style="animation-delay: 0.65s; opacity: 0;">
+          <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="group inline-flex items-center gap-2.5 px-7 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-full transition-all duration-200 hover:shadow-lg shadow-emerald-600/25 hover:-translate-y-0.5 text-base">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escr&iacute;benos por WhatsApp
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="#casos-exito" class="inline-flex items-center gap-2 px-7 py-3.5 text-gray-300 hover:text-white font-medium rounded-full transition-colors text-base">
+            Ver portafolio
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+        </div>
+
+        <!-- Trust row -->
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-gray-500 text-xs sm:text-sm animate-fade-in" style="animation-delay: 0.8s; opacity: 0;">
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Clientes en Colombia y USA
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-orv-400"></span>
+            Cotizaci&oacute;n en menos de 24h
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+            100% a tu medida
+          </span>
+        </div>
+
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-      <div class="flex flex-col items-center animate-fade-in gap-2">
-        <!-- Label -->
-        <span class="text-xs font-semibold tracking-widest uppercase text-orv-400/70">Desplázate</span>
-        <!-- Icon -->
-        <div class="relative">
-          <svg class="w-5 h-5 text-orv-400 animate-bounce drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-          </svg>
-        </div>
-      </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+      <svg class="w-5 h-5 text-white/20 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
     </div>
   </section>
 
@@ -565,7 +838,7 @@
 
           <div class="reveal">
             <p class="text-lg text-gray-300 leading-relaxed">
-              Somos una empresa de transformación digital que integra <span class="text-white font-medium">desarrollo de software, marketing y automatización</span> en un solo ecosistema. Nuestro objetivo es que las empresas operen mejor, sean más visibles y crezcan de forma sostenible.
+              Somos una empresa de transformación digital que integra <span class="text-white font-medium">desarrollo de software, creación de sitios web, marketing y automatización</span> en un solo ecosistema. Nuestro objetivo es que las empresas <span class="text-orv-400 font-medium">vendan más, operen mejor y crezcan de forma sostenible</span>.
             </p>
           </div>
 
@@ -575,25 +848,25 @@
               <div class="w-10 h-10 rounded-lg bg-orv-600/15 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 text-orv-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
               </div>
-              <span class="text-sm font-medium">Software</span>
+              <span class="text-sm font-medium">Software a medida</span>
             </div>
             <div class="reveal flex items-center gap-3 text-gray-300">
               <div class="w-10 h-10 rounded-lg bg-orv-600/15 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 text-orv-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
               </div>
-              <span class="text-sm font-medium">Presencia digital</span>
+              <span class="text-sm font-medium">Sitios web que venden</span>
+            </div>
+            <div class="reveal flex items-center gap-3 text-gray-300">
+              <div class="w-10 h-10 rounded-lg bg-orv-600/15 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-orv-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              </div>
+              <span class="text-sm font-medium">Apps móviles</span>
             </div>
             <div class="reveal flex items-center gap-3 text-gray-300">
               <div class="w-10 h-10 rounded-lg bg-orv-600/15 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5 text-orv-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
               </div>
               <span class="text-sm font-medium">Automatización</span>
-            </div>
-            <div class="reveal flex items-center gap-3 text-gray-300">
-              <div class="w-10 h-10 rounded-lg bg-orv-600/15 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-orv-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              </div>
-              <span class="text-sm font-medium">Experiencia del cliente</span>
             </div>
           </div>
         </div>
@@ -645,8 +918,6 @@
 
   <div class="section-divider max-w-4xl mx-auto"></div>
 
-
-
   <!-- ==================== SERVICES ==================== -->
   <section id="servicios" class="relative py-24 md:py-32 overflow-hidden">
     <!-- Background accents -->
@@ -655,12 +926,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section header -->
       <div class="text-center mb-16 md:mb-20 reveal">
-        <span class="text-orv-400 font-medium text-sm tracking-widest uppercase">Lo que hacemos</span>
+        <span class="text-orv-400 font-medium text-sm tracking-widest uppercase">Soluciones que generan resultados</span>
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
-          Nuestros <span class="gradient-text">Servicios</span>
+          ¿Qué necesita <span class="gradient-text">tu negocio</span>?
         </h2>
         <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
-          Digitalizamos tu empresa de principio a fin en un solo ecosistema.
+          Desde un sitio web que te posicione, hasta software que automatice tu operación. <span class="text-white font-medium">Todo hecho a tu medida.</span>
         </p>
         <div class="w-20 h-1 bg-gradient-to-r from-orv-600 to-orv-400 mx-auto rounded-full mt-6"></div>
       </div>
@@ -677,19 +948,19 @@
             GRATUITO
           </div>
           <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Diagnóstico Digital</h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Evaluación completa del estado tecnológico de tu empresa, análisis de presencia online e identificación de oportunidades de automatización y crecimiento.</p>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Evaluamos tu negocio y te entregamos un plan claro de acción. Descubre qué necesitas para vender más y operar mejor.</p>
           <ul class="space-y-2 text-sm text-gray-500">
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Estado tecnológico actual
+              Análisis de tu presencia digital
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Presencia online
+              Oportunidades de automatización
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Oportunidades de crecimiento
+              Plan de acción personalizado
             </li>
           </ul>
         </div>
@@ -699,16 +970,16 @@
           <div class="service-icon w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-orv-500 to-orv-700 flex items-center justify-center mb-6 transition-all duration-md3-medium shadow-md3-2">
             <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
           </div>
-          <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Desarrollo de Software</h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Sistemas empresariales a medida, aplicaciones web, automatización de procesos e integraciones con plataformas y APIs.</p>
+          <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Software a Medida</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Sistemas que reemplazan hojas de Excel, automatizan procesos y te dan control total de tu operación. Web y móvil.</p>
           <ul class="space-y-2 text-sm text-gray-500">
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-orv-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Sistemas a medida
+              Plataformas web & móviles
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-orv-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Aplicaciones web
+              Inventarios, ventas, CRMs
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-orv-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -717,25 +988,28 @@
           </ul>
         </div>
 
-        <!-- Service 3: Presencia Digital -->
+        <!-- Service 3: Sitios Web -->
         <div class="reveal service-card glass-light rounded-md3-lg p-6 md:p-8 group cursor-pointer focus-within:ring-2 focus-within:ring-orv-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
           <div class="service-icon w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-violet-500 to-violet-700 flex items-center justify-center mb-6 transition-all duration-md3-medium shadow-md3-2">
             <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
           </div>
-          <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Presencia Digital</h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Sitios web corporativos, landing pages de alta conversión y optimización SEO inicial para maximizar tu visibilidad online.</p>
+          <div class="inline-flex items-center px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs font-semibold mb-4 tracking-wide">
+            MÁS VENDIDO
+          </div>
+          <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Sitios Web que Venden</h3>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Páginas web profesionales diseñadas para convertir visitantes en clientes. SEO optimizado, rápidas y con diseño premium.</p>
           <ul class="space-y-2 text-sm text-gray-500">
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-violet-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Sitios web corporativos
+              Diseño profesional y atractivo
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-violet-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Landing pages
+              SEO para aparecer en Google
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-violet-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Optimización SEO
+              Optimizado para celular
             </li>
           </ul>
         </div>
@@ -746,11 +1020,11 @@
             <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
           </div>
           <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Marketing Digital</h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Gestión estratégica de redes sociales, diseño gráfico, branding, contenido audiovisual y campañas publicitarias digitales.</p>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Estrategias de redes sociales, branding y campañas que hacen crecer tu audiencia y convierten seguidores en compradores.</p>
           <ul class="space-y-2 text-sm text-gray-500">
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Redes sociales
+              Redes sociales estratégicas
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -758,7 +1032,7 @@
             </li>
             <li class="flex items-center gap-2">
               <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Campañas publicitarias
+              Campañas con ROI medible
             </li>
           </ul>
         </div>
@@ -774,11 +1048,11 @@
                 <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
               </div>
               <div class="inline-flex items-center px-3 py-1 rounded-full bg-orv-500/15 text-orv-300 text-xs font-semibold mb-4 tracking-wide">
-                ⭐ SERVICIO PRINCIPAL
+                ⭐ MÁXIMO IMPACTO
               </div>
               <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-4">Ecosistema Digital Integral</h3>
               <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
-                Diseñamos un entorno digital completo donde tu software, tu presencia online y tus clientes trabajan de forma sincronizada para hacer crecer tu empresa. Este es nuestro gran diferenciador.
+                La solución completa: software + sitio web + marketing + automatización. Todo conectado y trabajando para que tu empresa <span class="text-white font-medium">crezca en piloto automático</span>. Este es nuestro gran diferenciador.
               </p>
             </div>
             <div class="flex-1 flex flex-col justify-center">
@@ -811,6 +1085,17 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Inline CTA after services -->
+      <div class="reveal mt-12 md:mt-16 cta-inline rounded-md3-xl p-8 md:p-10 text-center">
+        <p class="text-lg md:text-xl text-gray-200 mb-4 font-medium">¿No sabes cuál servicio necesitas? <span class="text-orv-400">Nosotros te asesoramos gratis.</span></p>
+        <p class="text-gray-400 mb-6 max-w-xl mx-auto">Cuéntanos tu problema y en menos de 24h te decimos exactamente qué necesita tu negocio para empezar a crecer.</p>
+        <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20no%20s%C3%A9%20qu%C3%A9%20servicio%20necesito%20y%20quiero%20asesor%C3%ADa" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-full transition-all hover:shadow-lg shadow-emerald-500/30 hover:-translate-y-0.5">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pide tu asesoría gratis
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -984,36 +1269,64 @@
 
   <div class="section-divider max-w-4xl mx-auto"></div>
 
-  <!-- ==================== ORBOXY HIGHLIGHT (reubicada) ==================== -->
-  <section id="orboxy" class="relative py-20 md:py-28 overflow-hidden">
-    <div class="absolute -top-10 left-0 w-96 h-96 bg-orv-600/5 rounded-full blur-[120px]"></div>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10 reveal">
-        <span class="text-orv-400 font-medium text-sm tracking-widest uppercase">Herramientas internas</span>
-        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-4">Orboxy — <span class="gradient-text">Potenciador de productos</span></h2>
-        <p class="text-gray-400 max-w-2xl mx-auto">Orboxy es nuestra suite interna que acelera desarrollo, mejora la calidad y facilita entregas consistentes. Está diseñada para que nuestros equipos entreguen mejores productos al usuario final.</p>
+  <!-- ==================== ¿CÓMO TRABAJAMOS? ==================== -->
+  <section id="proceso" class="relative py-24 md:py-32 overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orv-600/5 rounded-full blur-[150px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 md:mb-20 reveal">
+        <span class="text-orv-400 font-medium text-sm tracking-widest uppercase">Proceso simple</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+          De la idea a los <span class="gradient-text">resultados</span> en 4 pasos
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+          No necesitas saber de tecnología. <span class="text-white font-medium">Nosotros nos encargamos de todo.</span>
+        </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="glass-light p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-white mb-2">Componentes reutilizables</h3>
-          <p class="text-gray-300 text-sm">Librerías y componentes que aceleran la construcción de interfaces coherentes.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 stagger-children">
+        <!-- Step 1 -->
+        <div class="reveal process-step glass-light rounded-md3-xl p-6 md:p-8 text-center">
+          <div class="step-number bg-gradient-to-br from-emerald-500 to-emerald-700 text-white mx-auto mb-5">1</div>
+          <h3 class="font-display text-lg font-bold text-white mb-3">Cuéntanos tu idea</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Escríbenos por WhatsApp o email. Cuéntanos qué problema quieres resolver y nosotros te asesoramos <span class="text-emerald-400 font-semibold">gratis</span>.</p>
         </div>
-        <div class="glass-light p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-white mb-2">Pipelines y calidad</h3>
-          <p class="text-gray-300 text-sm">Integración continua, pruebas automáticas y revisión de código para entregas sólidas.</p>
+
+        <!-- Step 2 -->
+        <div class="reveal process-step glass-light rounded-md3-xl p-6 md:p-8 text-center">
+          <div class="step-number bg-gradient-to-br from-orv-500 to-orv-700 text-white mx-auto mb-5">2</div>
+          <h3 class="font-display text-lg font-bold text-white mb-3">Te hacemos una propuesta</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Analizamos tu negocio y te entregamos una propuesta clara con <span class="text-orv-400 font-semibold">tiempos, costos y alcance</span> definido.</p>
         </div>
-        <div class="glass-light p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-white mb-2">Templates y guías</h3>
-          <p class="text-gray-300 text-sm">Plantillas de proyectos y patrones que reducen el riesgo técnico.</p>
+
+        <!-- Step 3 -->
+        <div class="reveal process-step glass-light rounded-md3-xl p-6 md:p-8 text-center">
+          <div class="step-number bg-gradient-to-br from-violet-500 to-violet-700 text-white mx-auto mb-5">3</div>
+          <h3 class="font-display text-lg font-bold text-white mb-3">Desarrollamos tu solución</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Construimos tu software o sitio web con entregas parciales para que <span class="text-violet-400 font-semibold">veas avances cada semana</span>.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="reveal process-step glass-light rounded-md3-xl p-6 md:p-8 text-center">
+          <div class="step-number bg-gradient-to-br from-amber-500 to-amber-700 text-white mx-auto mb-5">4</div>
+          <h3 class="font-display text-lg font-bold text-white mb-3">Lanzamos y crecemos</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Entregamos tu proyecto listo para usar, con <span class="text-amber-400 font-semibold">soporte y capacitación</span> incluida. ¡A vender!</p>
         </div>
       </div>
 
-      <div class="text-center">
-        <a href="orboxy.html" class="inline-block px-8 py-3 bg-orv-600 hover:bg-orv-500 text-white rounded-full font-semibold">Leer más sobre Orboxy</a>
+      <!-- Process CTA -->
+      <div class="reveal mt-12 text-center">
+        <p class="text-gray-400 text-lg mb-4">¿Suena bien? El primer paso es hablar con nosotros.</p>
+        <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-full transition-all hover:shadow-lg shadow-emerald-500/30 hover:-translate-y-0.5 text-lg">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agenda tu asesoría gratis
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
       </div>
     </div>
   </section>
+
+  <div class="section-divider max-w-4xl mx-auto"></div>
 
   <!-- ==================== NUESTRO EQUIPO ==================== -->
   <section id="equipo" class="relative py-24 md:py-32 overflow-hidden">
@@ -1029,53 +1342,69 @@
           El talento detrás de la <span class="gradient-text">transformación</span>
         </h2>
         <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-          Expertos apasionados por la innovación y el crecimiento de tu empresa.
+          Ingenieros y desarrolladores apasionados por crear soluciones que generan impacto real en tu negocio.
         </p>
       </div>
 
-      <!-- Team Grid -->
-      <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+      <!-- Team Grid - 3 columns -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
         <!-- Santiago -->
         <div class="reveal group focus-within:ring-2 focus-within:ring-orv-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900 rounded-md3-xl" tabindex="0">
           <div class="relative mb-6 md:mb-8 overflow-hidden rounded-md3-xl shadow-md3-2 group-hover:shadow-md3-4 transition-shadow duration-md3-medium">
-            <img src="SantiagoDorado.jpg" alt="Santiago Dorado Melo" class="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-md3-long">
+            <img src="SantiagoDorado.jpg" alt="Santiago Dorado Melo" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-md3-long">
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-40"></div>
           </div>
           <div class="px-2">
             <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-1">Santiago Dorado Melo</h3>
             <p class="text-orv-400 font-semibold text-sm md:text-base mb-4">Analista y Desarrollador de Software • Líder de Desarrollo</p>
-            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
-              Desarrollo Fullstack especializado en <span class="text-white font-medium">Laravel + Livewire y Angular + NestJS</span>. Con más de 2 años transformando visiones en código poderoso y elegante. Experiencia integrando APIs a sistemas, manejo avanzado de peticiones HTTP y trabajo con tecnologías de almacenamiento en la nube (S3, Firebase, AWS / Google Cloud). Innovación y creatividad en cada línea. Guitarrista y apasionado por el carnaval de negros y blancos.
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              Desarrollo Fullstack especializado en <span class="text-white font-medium">Laravel + Livewire y Angular + NestJS</span>. Con más de 2 años transformando visiones en código poderoso y elegante. Experiencia en desarrollo de <span class="text-white font-medium">aplicaciones fullstack que se sirven como aplicaciones móviles a través de Capacitor JS</span>, logrando un desarrollo robusto multiplataforma desde una sola base de código. Integración de APIs, manejo avanzado de peticiones HTTP y trabajo con tecnologías de almacenamiento en la nube (S3, Firebase, AWS / Google Cloud). Innovación y creatividad en cada línea. Guitarrista y apasionado por el carnaval de negros y blancos.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9 6-9 6V6z"/></svg>
-                Laravel
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h-6l3-7zM5 12h14M4 20h16"/></svg>
-                Angular
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14V5H5a2 2 0 0 0-2 2z"/></svg>
-                NestJS
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8M8 6h8M8 18h8"/></svg>
-                APIs / HTTP
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.5A5.5 5.5 0 0014.5 12H13a4 4 0 10-7.874 1.542"/><path d="M3 20h18"/></svg>
-                Cloud Storage
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10M7 4h10M7 12h10"/></svg>
-                TypeScript
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v6c0 1.656 4.03 3 9 3s9-1.344 9-3V6"/></svg>
-                MySQL
-              </span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Laravel</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Angular</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">NestJS</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Capacitor JS</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">APIs / HTTP</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Cloud Storage</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">TypeScript</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daniel Criollo -->
+        <div class="reveal group focus-within:ring-2 focus-within:ring-orv-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900 rounded-md3-xl" tabindex="0">
+          <div class="relative mb-6 md:mb-8 overflow-hidden rounded-md3-xl shadow-md3-2 group-hover:shadow-md3-4 transition-shadow duration-md3-medium">
+            <img src="DanielCriollo.png" alt="Daniel Criollo" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-md3-long">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-40"></div>
+          </div>
+          <div class="px-2">
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-1">Daniel Criollo</h3>
+            <p class="text-orv-400 font-semibold text-sm md:text-base mb-4">Ingeniero de Sistemas • Backend Developer PHP</p>
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              Ingeniero de Sistemas con <span class="text-white font-medium">+4 años de experiencia</span> desarrollando APIs, sistemas internos y plataformas SaaS. Especializado en <span class="text-white font-medium">Laravel, Livewire y el ecosistema PHP moderno</span>. Amante del Clean Code, testing automatizado y arquitectura mantenible. Experiencia sólida con Git, Docker, bases de datos SQL y metodologías ágiles.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">PHP</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Laravel</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Livewire</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Alpine.js</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Docker</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">MySQL</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Pest / PHPUnit</span>
+            </div>
+            <!-- Social links -->
+            <div class="flex items-center gap-3 text-gray-500">
+              <a href="mailto:danielcriollo9706@gmail.com" class="team-social hover:text-orv-400" title="Email">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/danielcriollo" target="_blank" rel="noopener" class="team-social hover:text-orv-400" title="LinkedIn">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="https://github.com/DanielCriollo" target="_blank" rel="noopener" class="team-social hover:text-orv-400" title="GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
             </div>
           </div>
         </div>
@@ -1083,54 +1412,26 @@
         <!-- Luisa Fernanda -->
         <div class="reveal group focus-within:ring-2 focus-within:ring-orv-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900 rounded-md3-xl" tabindex="0">
           <div class="relative mb-6 md:mb-8 overflow-hidden rounded-md3-xl shadow-md3-2 group-hover:shadow-md3-4 transition-shadow duration-md3-medium">
-            <img src="LuisaDiaz.jpeg" alt="Luisa Fernanda Diaz Maya" class="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-md3-long">
+            <img src="LuisaDiaz.jpeg" alt="Luisa Fernanda Diaz Maya" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-md3-long">
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-40"></div>
           </div>
           <div class="px-2">
             <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-1">Luisa Fernanda Diaz Maya</h3>
             <p class="text-orv-400 font-semibold text-sm md:text-base mb-4">Analista y Desarrolladora de Software</p>
-            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
+            <p class="text-gray-300 text-sm leading-relaxed mb-4">
               Analista y desarrolladora con experiencia en <span class="text-white font-medium">Angular, Java SpringBoot y Laravel + Livewire</span>. Manejo de bases de datos <span class="text-white font-medium">MongoDB y MySQL</span>, herramientas administrativas como <span class="text-white font-medium">phpMyAdmin</span> y experiencia en pruebas y consumo de APIs con <span class="text-white font-medium">Postman</span>. Uso de control de versiones en <span class="text-white font-medium">GitHub</span> y Bitbucket. Apasionada por el modelaje.
             </p>
             <div class="flex flex-wrap gap-2 mb-2">
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h-6l3-7zM5 12h14M4 20h16"/></svg>
-                Angular
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v6h8V2M5 10h14v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-8z"/></svg>
-                Java SpringBoot
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9 6-9 6V6z"/></svg>
-                Laravel
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v6c0 1.656 4.03 3 9 3s9-1.344 9-3V6"/></svg>
-                MongoDB
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v6c0 1.656 4.03 3 9 3s9-1.344 9-3V6"/></svg>
-                MySQL
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
-                phpMyAdmin
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                Postman
-              </span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Angular</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Java SpringBoot</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Laravel</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">MongoDB</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">MySQL</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-orv-600/20 text-orv-300 border border-orv-500/30">Postman</span>
             </div>
             <div class="flex flex-wrap gap-2">
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12a10 10 0 0016.95 7.07c.1-.08.2-.18.29-.27A4 4 0 0020 14.4c0-1.1-.45-2.1-1.17-2.83"/><path d="M16 11.5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                GitHub
-              </span>
-              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M7 3v18"/></svg>
-                Bitbucket
-              </span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30">GitHub</span>
+              <span class="skill-badge px-3 py-1 rounded-full text-xs font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30">Bitbucket</span>
             </div>
           </div>
         </div>
@@ -1140,7 +1441,7 @@
 
   <div class="section-divider max-w-4xl mx-auto"></div>
 
-  <!-- ==================== CASOS DE ÉXITO / TESTIMONIOS ==================== -->
+  <!-- ==================== CASOS DE ÉXITO / PORTAFOLIO ==================== -->
   <section id="casos-exito" class="relative py-24 md:py-32 overflow-hidden">
     <div class="absolute top-1/4 right-0 w-[400px] h-[400px] bg-orv-600/5 rounded-full blur-[120px]"></div>
     <div class="absolute bottom-1/4 left-0 w-[300px] h-[300px] bg-violet-600/5 rounded-full blur-[120px]"></div>
@@ -1149,23 +1450,24 @@
       <!-- Header -->
       <div class="text-center mb-16 md:mb-20">
         <div class="reveal">
-          <span class="text-orv-400 font-medium text-sm tracking-widest uppercase">Casos de éxito</span>
+          <span class="text-orv-400 font-medium text-sm tracking-widest uppercase">Portafolio</span>
           <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
-            Empresas que crecieron<br>con nuestro <span class="gradient-text">ecosistema</span>
+            Proyectos que generan<br><span class="gradient-text">resultados reales</span>
           </h2>
           <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-            Transformamos visiones en realidad. Conoce cómo empresas de diferentes sectores lograron su transformación digital con Orbecore.
+            Software, sitios web y plataformas que ya están transformando negocios en Colombia y el mundo. <span class="text-white font-medium">Tu proyecto puede ser el siguiente.</span>
           </p>
         </div>
       </div>
 
       <!-- Case Studies Grid -->
-      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
         <!-- SENA Case -->
-        <div class="reveal-left group glass-light rounded-md3-xl p-6 md:p-8 hover:border-orv-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-orv-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
+        <div class="reveal-left case-card group glass-light rounded-md3-xl p-6 md:p-8 hover:border-orv-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-orv-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
           <!-- Logo/Icon Area -->
-          <div class="w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-amber-500/20 to-amber-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short">
-            <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png" alt="SENA" class="w-8 h-8 md:w-10 md:h-10 object-contain">
+          <div class="w-14 h-14 md:w-16 md:h-16 rounded-md3 bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short p-2">
+            <img src="image.png" alt="SENA" class="w-full h-full object-contain">
           </div>
 
           <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-2">SENA Regional Nariño</h3>
@@ -1200,7 +1502,7 @@
         </div>
 
         <!-- Bee Languages Academy Case -->
-        <div class="reveal group glass-light rounded-md3-xl p-6 md:p-8 hover:border-violet-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-violet-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
+        <div class="reveal case-card group glass-light rounded-md3-xl p-6 md:p-8 hover:border-violet-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-violet-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
           <!-- Logo/Icon Area -->
           <div class="w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-violet-500/20 to-violet-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short">
             <img src="https://mybeeweb.com/assets/img/logo.png" alt="Bee Languages Academy" class="w-8 h-8 md:w-10 md:h-10 object-contain">
@@ -1224,11 +1526,10 @@
                 <li>✓ Acceso 24/7 al software de aprendizaje</li>
                 <li>✓ Gestión interna y sistema de tiqueteras</li>
                 <li>✓ Control de horas y seguimiento personalizado</li>
-                <li>✓ Coaches certificados, bilingües y con experiencia internacional</li>
               </ul>
             </div>
             <p class="text-gray-400 text-sm italic border-t border-white/5 pt-3 mt-3">
-              <strong>"Para mí ha sido un plus increíble a mi negocio que me permite cerrar ventas generando credibilidad y confianza. Es una plataforma humana, personalizada y con la capacidad de entender las necesidades específicas de un negocio auténtico."</strong> - Valentina Fajardo, Dueña
+              <strong>"Para mí ha sido un plus increíble a mi negocio que me permite cerrar ventas generando credibilidad y confianza."</strong> - Valentina Fajardo, Dueña
             </p>
           </div>
 
@@ -1238,62 +1539,125 @@
           </div>
         </div>
 
-        <!-- CLEAN USA Case -->
-        <div class="reveal-right group glass-light rounded-md3-xl p-6 md:p-8 hover:border-emerald-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-emerald-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
+        <!-- Universidad Mariana Case -->
+        <div class="reveal-right case-card group glass-light rounded-md3-xl p-6 md:p-8 hover:border-cyan-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-cyan-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
           <!-- Logo/Icon Area -->
-          <div class="w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short">
-            <svg viewBox="0 0 768 364" preserveAspectRatio="xMidYMid meet" class="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg"><g><path fill="#4ADE80" d="m135.5 59.625 2.004.002C155.79 59.696 179.73 63.175 194 76c0 4.57-1.43 7.27-3.5 11.188q-1.096 2.13-2.187 4.261l-1.149 2.24c-1.965 3.9-3.815 7.854-5.664 11.811l-1.06 2.266q-1.222 2.616-2.44 5.234c-3.308-.56-5.406-1.214-8.437-2.812-15.413-7.72-35.276-9.28-51.938-4.626-6.71 2.567-14.215 6.02-19.336 11.153C97 118 97 118 95 118v2h-2l-.82 1.719c-1.223 2.364-2.615 4.543-4.055 6.781-7.614 12.895-9.897 27.926-6.242 42.613C84.355 178.603 87.963 184.95 93 191l1.77 2.145c11.096 12.217 26.703 16.006 42.62 16.855 11.924 0 24.342-2.08 34.673-8.312L175 200c3 1 3 1 4.727 3.93q.964 1.965 1.898 3.945l1.027 2.115A975 975 0 0 1 186 217l2.523 5.29c2.173 4.563 4.329 9.135 6.477 13.71-22.838 15.86-51.54 21.276-78.974 16.396-9.863-1.928-19.056-4.79-28.026-9.396l-2.805-1.406C78.91 238.32 73.403 234.576 68 230l-2.465-2.059c-19.718-17.044-31.157-39.996-33.406-65.933L32 160l-.16-1.945C30.817 134.67 41.957 112.822 56 95l2.148-2.852L60 90h2v-2a123 123 0 0 1 6.375-5.25l1.94-1.502c19.023-14.535 41.347-21.656 65.185-21.623"/></g></svg>
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
           </div>
 
-          <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-2">CLEAN USA</h3>
-          <p class="text-emerald-400 font-medium text-xs md:text-sm mb-4">Servicios Premium de Limpieza</p>
+          <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-2">Universidad Mariana</h3>
+          <p class="text-cyan-400 font-medium text-xs md:text-sm mb-4">Plataformas de Diagnóstico & Testing</p>
 
           <p class="text-gray-300 text-sm leading-relaxed mb-6">
-            Empresa de limpieza premium registrada e asegurada que ofrece servicios profesionales, eco-friendly y pet-friendly en Western New York con horarios flexible y atención personalizada.
+            Institución de educación superior reconocida en el sur de Colombia. Colaboración en el desarrollo de herramientas tecnológicas para investigación y emprendimiento universitario.
           </p>
 
           <div class="space-y-4 mb-6 pb-6 border-b border-white/5">
             <div>
-              <h4 class="text-white font-semibold text-sm mb-2">Servicios y Características</h4>
+              <h4 class="text-white font-semibold text-sm mb-2">Desarrollos Realizados</h4>
+              <ul class="text-gray-400 text-sm space-y-2 ml-4">
+                <li>✓ <strong>Plataformas de diagnósticos empresariales:</strong> herramientas web para evaluar el estado y potencial de las empresas de la región</li>
+                <li>✓ <strong>Software de Test de Habilidades Emprendedoras:</strong> aplicación interactiva para medir y potenciar competencias de emprendimiento en estudiantes y profesionales</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 text-cyan-400 text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Software académico & empresarial
+          </div>
+        </div>
+
+        <!-- El Doradal Snacks Case -->
+        <div class="reveal case-card group glass-light rounded-md3-xl p-6 md:p-8 hover:border-amber-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-amber-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
+          <!-- Logo/Icon Area -->
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-amber-500/20 to-amber-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          </div>
+
+          <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-2">El Doradal Snacks</h3>
+          <p class="text-amber-400 font-medium text-xs md:text-sm mb-4">Sitio Web para Incremento de Ventas</p>
+
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            Empresa de alimentos y snacks que necesitaba una presencia digital profesional para ampliar su alcance y conectar con más clientes.
+          </p>
+
+          <div class="space-y-4 mb-6 pb-6 border-b border-white/5">
+            <div>
+              <h4 class="text-white font-semibold text-sm mb-2">Sitio Web Profesional</h4>
               <p class="text-gray-400 text-sm mb-2">
-                Soluciones de limpieza completas y personalizadas:
+                Desarrollo integral de su sitio web enfocado en conversión:
               </p>
               <ul class="text-gray-400 text-sm space-y-1 ml-4">
-                <li>✓ Limpieza residencial y comercial</li>
-                <li>✓ Post-construcción y limpieza para administradores de edificios</li>
-                <li>✓ Organización profesional</li>
-                <li>✓ Productos eco-friendly y pet-friendly</li>
-                <li>✓ Equipo entrenado en estándares de excelencia</li>
+                <li>✓ Diseño profesional que refleja la marca</li>
+                <li>✓ Catálogo de productos atractivo y organizado</li>
+                <li>✓ Optimizado para SEO y posicionamiento en Google</li>
+                <li>✓ Diseño responsive para celulares y tablets</li>
+                <li>✓ Estrategia de conversión para incrementar ventas</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 text-amber-400 text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Sitio web que vende
+          </div>
+        </div>
+
+        <!-- CLEAN USA Case -->
+        <div class="reveal case-card group glass-light rounded-md3-xl p-6 md:p-8 hover:border-emerald-500/50 transition-all duration-md3-medium shadow-md3-1 hover:shadow-md3-3 focus-within:ring-2 focus-within:ring-emerald-400 focus-within:ring-offset-2 focus-within:ring-offset-dark-900" tabindex="0">
+          <!-- Logo/Icon Area -->
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-md3 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-md3-short">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          </div>
+
+          <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-2">CLEAN USA</h3>
+          <p class="text-emerald-400 font-medium text-xs md:text-sm mb-4">Servicios Premium de Limpieza — Buffalo, NY</p>
+
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            Empresa de limpieza premium registrada y asegurada en Western New York con servicios profesionales, eco-friendly y pet-friendly.
+          </p>
+
+          <div class="space-y-4 mb-6 pb-6 border-b border-white/5">
+            <div>
+              <h4 class="text-white font-semibold text-sm mb-2">Presencia Digital Premium</h4>
+              <ul class="text-gray-400 text-sm space-y-1 ml-4">
+                <li>✓ Sitio web profesional bilingüe</li>
+                <li>✓ Sistema de cotización online</li>
+                <li>✓ Posicionamiento en búsqueda local</li>
+                <li>✓ Credibilidad digital para mercado USA</li>
               </ul>
             </div>
             <p class="text-gray-400 text-sm italic border-t border-white/5 pt-3 mt-3">
-              <strong>"Absolutely thrilled with CLEAN. With two young kids, keeping the house spotless felt impossible. The team arrived on time, super organized, and left everything perfect. The difference between a quick clean and truly professional service is very noticeable."</strong> - Charlotte Smith
+              <strong>"Absolutely thrilled with CLEAN. The team arrived on time, super organized, and left everything perfect."</strong> - Charlotte Smith
             </p>
-            <div class="text-gray-400 text-sm">
-              <p><strong>Ubicación:</strong> Erie County – Buffalo, NY, USA</p>
-            </div>
           </div>
 
           <div class="flex items-center gap-2 text-emerald-400 text-sm font-medium">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            Presencia Digital Premium
+            Presencia Digital Internacional
           </div>
         </div>
       </div>
 
       <!-- Stats -->
-      <div class="reveal mt-20 grid grid-cols-3 gap-8 pt-12 border-t border-white/5">
+      <div class="reveal mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-white/5">
         <div class="text-center">
-          <div class="font-display text-4xl font-bold text-orv-400 mb-2">3+</div>
-          <p class="text-gray-400 text-sm">Casos de éxito transformados</p>
+          <div class="font-display text-4xl font-bold text-orv-400 mb-2">5+</div>
+          <p class="text-gray-400 text-sm">Proyectos entregados</p>
         </div>
         <div class="text-center">
           <div class="font-display text-4xl font-bold text-violet-400 mb-2">500+</div>
           <p class="text-gray-400 text-sm">Usuarios impactados</p>
         </div>
         <div class="text-center">
+          <div class="font-display text-4xl font-bold text-cyan-400 mb-2">3</div>
+          <p class="text-gray-400 text-sm">Países alcanzados</p>
+        </div>
+        <div class="text-center">
           <div class="font-display text-4xl font-bold text-emerald-400 mb-2">100%</div>
-          <p class="text-gray-400 text-sm">Satisfacción garantizada</p>
+          <p class="text-gray-400 text-sm">Clientes satisfechos</p>
         </div>
       </div>
     </div>
@@ -1310,24 +1674,43 @@
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="reveal">
         <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-orv-300 text-sm font-medium mb-6 md:mb-8">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          Tu ecosistema digital comienza aquí
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Respondemos hoy mismo
         </span>
       </div>
 
       <h2 class="reveal font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
-        ¿Listo para <span class="gradient-text">transformar</span><br>tu empresa?
+        Cada día sin <span class="gradient-text">presencia digital</span><br>es un día que <span class="text-red-400">pierdes ventas</span>
       </h2>
 
-      <p class="reveal text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed">
-        Comienza con un <span class="text-white font-semibold">diagnóstico digital gratuito</span>. Evaluamos tu empresa y te mostramos el camino hacia tu transformación digital.
+      <p class="reveal text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-6 leading-relaxed">
+        Tu competencia ya tiene sitio web y software. <span class="text-white font-semibold">¿Tú también quieres crecer?</span> Escríbenos y en menos de 24h tienes una propuesta lista.
       </p>
 
+      <!-- What's included -->
+      <div class="reveal flex flex-wrap items-center justify-center gap-4 mb-10 text-sm">
+        <span class="flex items-center gap-1.5 text-emerald-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Asesoría gratuita
+        </span>
+        <span class="flex items-center gap-1.5 text-emerald-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Cotización sin compromiso
+        </span>
+        <span class="flex items-center gap-1.5 text-emerald-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Diagnóstico digital gratis
+        </span>
+      </div>
+
       <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="mailto:orbecore@gmail.com.com" class="group flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-orv-600 hover:bg-orv-500 text-white font-semibold rounded-full transition-all duration-md3-medium shadow-md3-2 hover:shadow-md3-4 hover:-translate-y-0.5 text-base md:text-lg focus-visible:ring-2 focus-visible:ring-orv-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900">
+        <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="group flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full transition-all duration-md3-medium shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-1 text-lg md:text-xl focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos ahora por WhatsApp
+        </a>
+        <a href="mailto:orbecore@gmail.com" class="group flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 glass text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-md3-medium text-base">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          Solicita tu diagnóstico gratis
-          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-md3-short" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          O envía un correo
         </a>
       </div>
 
@@ -1359,7 +1742,7 @@
             <img src="orbecore_logo_azul_blanco_1.png" alt="Orbecore" class="h-10 md:h-12 w-auto" style="filter: drop-shadow(0 2px 8px rgba(46, 120, 255, 0.2));">
           </a>
           <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
-            Donde tu empresa evoluciona al mundo digital. Creamos ecosistemas tecnológicos que impulsan tu crecimiento.
+            Software a medida, sitios web y ecosistemas digitales que impulsan tu negocio. Resultados reales, no promesas.
           </p>
         </div>
 
@@ -1372,7 +1755,7 @@
             <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Servicios</a></li>
             <li><a href="#valores" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Valores</a></li>
             <li><a href="#ecosistema" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Ecosistema</a></li>
-            <li><a href="#casos-exito" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Casos de éxito</a></li>
+            <li><a href="#casos-exito" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Portafolio</a></li>
           </ul>
         </div>
 
@@ -1381,8 +1764,8 @@
           <h4 class="font-display font-semibold text-white mb-4 md:mb-6">Servicios</h4>
           <ul class="space-y-3">
             <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Diagnóstico Digital</a></li>
-            <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Desarrollo de Software</a></li>
-            <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Presencia Digital</a></li>
+            <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Software a Medida</a></li>
+            <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Sitios Web que Venden</a></li>
             <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Marketing Digital</a></li>
             <li><a href="#servicios" class="text-gray-500 hover:text-orv-400 transition-colors duration-md3-short text-sm focus-visible:ring-2 focus-visible:ring-orv-400 rounded-sm outline-none">Ecosistema Integral</a></li>
           </ul>
@@ -1395,7 +1778,7 @@
           &copy; 2026 Orbecore. Todos los derechos reservados.
         </p>
         <p class="text-gray-700 text-xs">
-          Tecnología que impulsa tu crecimiento.
+          Software · Sitios Web · Ecosistemas Digitales
         </p>
       </div>
     </div>
@@ -1403,6 +1786,20 @@
 
   <!-- ==================== SCRIPTS ==================== -->
   <script>
+    // ===== SPLASH SCREEN =====
+    (function() {
+      const splash = document.getElementById('splash-screen');
+
+      // Dismiss splash screen after 2.4s
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+        setTimeout(() => {
+          splash.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 600);
+      }, 2400);
+    })();
+
     // ===== SHADER ANIMATION (WebGL with Three.js) =====
     (function() {
       const container = document.getElementById('shader-container');
@@ -1594,6 +1991,24 @@
         });
       });
     })();
+  </script>
+
+  <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+  <div class="whatsapp-label" id="whatsapp-label">Necesitas ayuda? Escríbenos</div>
+  <a href="https://wa.me/573000000000?text=Hola%20Orbecore%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="whatsapp-float" id="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // Dismiss WhatsApp label after 8 seconds
+    setTimeout(() => {
+      const label = document.getElementById('whatsapp-label');
+      if (label) {
+        label.style.transition = 'opacity 0.5s ease';
+        label.style.opacity = '0';
+        setTimeout(() => label.remove(), 500);
+      }
+    }, 10000);
   </script>
 </body>
 </html>
